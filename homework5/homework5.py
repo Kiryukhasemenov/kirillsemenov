@@ -1,4 +1,5 @@
 all_words=[]
+print("Vvedite latinskiye slova, i ya vypishu vam naibolee napominayushchiye 3p praes pass: ")
 new_element=input()
 while new_element:
     word=list(new_element)
