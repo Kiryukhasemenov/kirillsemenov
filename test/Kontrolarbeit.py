@@ -13,6 +13,11 @@ for i in range(len(lines)):
     if word_charact2[0]=="сущ"  and word_charact2[2]=="ед" and word_charact2[3]=="жен":
         print(word_charact[0])
         femine_nouns.append(word_charact[0])
-print(femine_nouns)
+        number=int(word_charact[2])
+        ipm_sum+=number
+text=", ".join(femine_nouns)
+print(text)
+print(ipm_sum)
+f.close()
         
 ## and word_charact2[2]=="ед" and word_charact2[3]=="жен"
