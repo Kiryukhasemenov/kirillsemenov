@@ -1,7 +1,7 @@
 ##1 - сложносочиненное предложение с разделительными союзами - done
 ##2 - сложноподчиненное с придаточным изъяснительным - done, although not perfectly...
-##3 - сложноподчиненное с придаточным времени
-#4 - сложносочиненное еще
+##3 - сложноподчиненное с придаточным времени - done
+#4 - бессоюзное сложное предложение - done
 ##5 - многоуровневое сложносоч+сложноподч
 import random
 def subject():
@@ -128,9 +128,22 @@ def expressing_verb(subj):
         verbs_sg=lines[0].split()
         verbs_pl=lines[1].split()
     if subj[-1]=='и' or subj[-1]=='ы':
-        return subj + ' ' + random.choice(verbs_pl) + ', '
+        return subj + ' ' + random.choice(verbs_pl)
     else:
-        return subj + ' ' + random.choice(verbs_sg) + ', '
+        return subj + ' ' + random.choice(verbs_sg)
+def verb_of_sence(subj):
+   with open('verbs-of-sences.txt', 'r', encoding='utf-8') as source9:
+        lines=source9.readlines()
+        verbs_m=lines[0].split()
+        verbs_f=lines[1].split()
+        verbs_pl=lines[2].split()
+   if subj[-1]=='и' or subj[-1]=='ы':
+       return subj + ' ' + random.choice(verbs_pl)    
+   elif subj[-1]=='а' or subj[-1]=='я':
+       return subj + ' ' + random.choice(verbs_f)
+   else:
+       return subj + ' ' + random.choice(verbs_m)
+
 def pronoun(subj):
     if subj[-1]=='и' or subj[-1]=='ы':
         return 'они '
@@ -164,10 +177,12 @@ def sent1():
 def sent2():
     sent=expressing_verb(subject()) + expr_conjunction() + intransitive_verb(subject()) + '.'
     return sent.capitalize()
-    
 def sent3():
     s=subject()
     sent=past_tense_clause(s) + ', ' + pronoun(s) + 'уже ' + adverb() + ' ' + bare_intransitive_verb(s) + '.'
+    return sent.capitalize()
+def sent4():
+    sent=verb_of_sence(subject())+ ': ' + intransitive_verb(subject()) + ', ' + intransitive_verb(noun_phrase(subject())) + ', ' + adverb() + ' ' + intransitive_verb(subject()) + '...'
     return sent.capitalize()
 ##def sent2():
 ##    main_clause=transitive_verb(subject())
@@ -255,4 +270,5 @@ def sequence_of_sentences():
     print('1. ', sent1())
     print('2. ', sent2())
     print('3. ', sent3())
+    print('4. ', sent4())
     return "other sentences are loading, please wait..."
