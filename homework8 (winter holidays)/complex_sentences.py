@@ -1,25 +1,21 @@
+##план работы:
 ##1 - сложносочиненное предложение с разделительными союзами - done
 ##2 - сложноподчиненное с придаточным изъяснительным - done, although not perfectly...
 ##3 - сложноподчиненное с придаточным времени - done
-#4 - бессоюзное сложное предложение - done
+##4 - бессоюзное сложное предложение - done
 ##5 - многоуровневое сложносочиненное+сложноподчиненное+бессоюзное - done
+
+
+## здесь собраны функции-элементы предложений
 import random
 def subject():
-    with open('nouns.txt', 'r', encoding='utf-8') as source:
-        lines=source.read()
-##        sg_nouns=lines[0].split()
-##        pl_nouns=lines[1].split()
+    with open('nouns.txt', 'r', encoding='utf-8') as source1:
+        lines=source1.read()
         nouns=lines.split()
-##        print(sg_nouns)
-##        print(pl_nouns)
-##    sg_subject=random.choice(sg_nouns)
-##    pl_subject=random.choice(pl_nouns)
     subject=random.choice(nouns)
     return subject
 def transitive_verb(subj):
     with open('transitive_verbs.txt', 'r', encoding='utf-8') as source2_1:
-##        line=source2.read()
-##        tr_verbs=line.split()
         lines=source2_1.readlines()
         verbs_sg=lines[0].split()
         verbs_pl=lines[1].split()
@@ -30,8 +26,6 @@ def transitive_verb(subj):
         return subj + ' ' + random.choice(verbs_pl) + ' ' + random.choice(objects)
     else:
         return subj + ' ' + random.choice(verbs_sg) + ' ' + random.choice(objects)
-##    tr_verb=random.choice(tr_verbs)
-##    return tr_verb
 def noun_phrase(subj):
     with open('adjectives.txt', 'r', encoding='utf-8') as source3:
         lines=source3.readlines()
@@ -54,8 +48,6 @@ def adverb():
     return random.choice(advs)
 def intransitive_verb(subj):
     with open('intransitive_verbs.txt', 'r', encoding='utf-8') as source5:
-##        line=source5.read()
-##        intr_verbs=line.split()
         lines=source5.readlines()
         verbs_sg=lines[0].split()
         verbs_pl=lines[1].split()
@@ -64,29 +56,23 @@ def intransitive_verb(subj):
     else:
         return subj + ' ' + random.choice(verbs_sg)
 def bare_intransitive_verb(subj):
-    with open('intransitive_verbs.txt', 'r', encoding='utf-8') as source5:
-        lines=source5.readlines()
+    with open('intransitive_verbs.txt', 'r', encoding='utf-8') as source6:
+        lines=source6.readlines()
         verbs_sg=lines[0].split()
         verbs_pl=lines[1].split()
     if subj[-1]=='и' or subj[-1]=='ы':
         return random.choice(verbs_pl)
     else:
         return random.choice(verbs_sg)
-##
-##
-##    if subj=='они':
-##        return random.choice(verbs_pl)
-##    elif subj=='он' or subj=='она' or subj=='оно':
-##        return random.choice(verbs_sg)
 def past_tense_clause(subj):
-    with open('verbs-praet.txt', 'r', encoding='utf-8') as source6_1:
-        lines=source6_1.readlines()
+    with open('verbs-praet.txt', 'r', encoding='utf-8') as source7_1:
+        lines=source7_1.readlines()
         verbs_m=lines[0].split(', ')
         verbs_f=lines[1].split(', ')
         verbs_pl=lines[2].split(', ')
         verbs_n=lines[3].split(', ')
-    with open ('conjunctions.txt', 'r', encoding='utf-8') as source7:
-        conjs=source7.readlines()
+    with open ('conjunctions.txt', 'r', encoding='utf-8') as source7_2:
+        conjs=source7_2.readlines()
         time_conjs=conjs[2].split(', ')
         conj=random.choice(time_conjs)
     if subj[-1]=='и' or subj[-1]=='ы':
@@ -98,8 +84,8 @@ def past_tense_clause(subj):
     else:
         return conj + ' ' + subj + ' ' + random.choice(verbs_m)
 def conjunction(v):
-    with open ('conjunctions.txt', 'r', encoding='utf-8') as source7:
-        conjs=source7.readlines()
+    with open ('conjunctions.txt', 'r', encoding='utf-8') as source8:
+        conjs=source8.readlines()
         corr_conjs=conjs[0].split(', ')
         expr_conjs=conjs[1].split(', ')
     if v==expressing_verb(subject()):
@@ -111,8 +97,8 @@ def conjunction(v):
     else:
         return random.choice(corr_conjs) + ' '
 def expr_conjunction():
-    with open ('conjunctions.txt', 'r', encoding='utf-8') as source7:
-        conjs=source7.readlines()
+    with open ('conjunctions.txt', 'r', encoding='utf-8') as source9:
+        conjs=source9.readlines()
         expr_conjs=conjs[1].split(', ')
     conj=random.choice(expr_conjs)
     if conj=='как' or conj=='насколько':
@@ -120,14 +106,14 @@ def expr_conjunction():
     else:
         return conj + ' '
 def time_conjunction():
-    with open ('conjunctions.txt', 'r', encoding='utf-8') as source7:
-        conjs=source7.readlines()
+    with open ('conjunctions.txt', 'r', encoding='utf-8') as source10:
+        conjs=source10.readlines()
         time_conjs=conjs[2].split(', ')
     conj=random.choice(time_conjs)
     return conj + ' '
 def expressing_verb(subj):
-    with open('verbs-for-clauses.txt', 'r', encoding='utf-8') as source8:
-        lines=source8.readlines()
+    with open('verbs-for-clauses.txt', 'r', encoding='utf-8') as source11:
+        lines=source11.readlines()
         verbs_sg=lines[0].split()
         verbs_pl=lines[1].split()
     if subj[-1]=='и' or subj[-1]=='ы':
@@ -135,8 +121,8 @@ def expressing_verb(subj):
     else:
         return random.choice(verbs_sg)
 def verb_of_sence(subj):
-   with open('verbs-of-sences.txt', 'r', encoding='utf-8') as source9:
-        lines=source9.readlines()
+   with open('verbs-of-sences.txt', 'r', encoding='utf-8') as source12:
+        lines=source12.readlines()
         verbs_m=lines[0].split()
         verbs_f=lines[1].split()
         verbs_pl=lines[2].split()
@@ -160,11 +146,12 @@ def pronoun(subj):
     else:
         return 'он '
 def nominal_sentence(subj):
-    with open('adjectives.txt', 'r', encoding='utf-8') as source3:
-        lines=source3.readlines()
+    with open('adjectives.txt', 'r', encoding='utf-8') as source13:
+        lines=source13.readlines()
         m_adj=lines[0].split()
         f_adj=lines[1].split()
         pl_adj=lines[2].split()
+        n_adj=lines[3].split()
     if subj[-1]=='и' or subj[-1]=='ы':
         return subj + ' - ' + random.choice(pl_adj)
     elif subj[-1]=='а' or subj[-1]=='я' or subj[-1]=='ь':
@@ -174,25 +161,10 @@ def nominal_sentence(subj):
     else:
         return subj + ' - ' + random.choice(m_adj)
 def modal_word():
-    with open('modal_words.txt', 'r', encoding='utf-8') as source3:
-        words=source3.read()
+    with open('modal_words.txt', 'r', encoding='utf-8') as source14:
+        words=source14.read()
         m_w=words.split()
     return random.choice(m_w)
-##def pronoun(acc):
-##    if 'его' in acc or 'человека' in acc:
-##        return 'он'
-##    elif acc=='армию' or acc=='жену' or acc=='ванную':
-##        return 'она'
-##    elif acc=='окно':
-##        return 'оно'
-##    else:
-##        return 'они'
-
-
-
-
-
-
 
 ##тут буду писать предложения:
 def sent1():
@@ -216,87 +188,9 @@ def sent5():
     s2=noun_phrase(subject())
     sent=past_tense_clause(s1) + ', ' + pronoun(s1) + modal_word() + ' ' + bare_intransitive_verb(s1) + ', a ' + transitive_verb(s2) + ' и ' + expressing_verb(s2) + ': ' + nominal_sentence(subject()) + '.'
     return sent.capitalize()
-##def sent2():
-##    main_clause=transitive_verb(subject())
-##    words=main_clause.split()
-##    if words[-1]=='его' or words[-1]=='человека':
-##        sentence=main_clause + ', пока ' + intransitive_verb('он') + '.' 
-##    elif words[-1]=='армию' or words[-1]=='жену' or words[-1]=='ванную':
-##        sentence=main_clause + ', пока ' + intransitive_verb('она') + '.'
-##    elif words[-1]=='окно':
-##        sentence=main_clause + ', пока ' + intransitive_verb('оно') + '.'
-##    else:
-##        sentence=main_clause + ', пока ' + intransitive_verb('они') + '.'
-##    return sentence.capitalize()
-##import random
-##def subject():
-##    with open('nouns.txt', 'r', encoding='utf-8') as source1:
-##        s=source1.read
-##        print(s)
-##    return s
-####        nouns=source_text.split()
-####        print(nouns)
-##with open('nouns.txt', 'r', encoding='utf-8') as source1:
-##    s=source1.readlines
-##    print(s)
-##
-##
-##
-##
-####import random
-####with open('words.txt', 'r', encoding='utf-8') as source:
-####    lines=source.readlines()
-######    line1=lines[0]
-######    line2=lines[1]
-######    line3=lines[2]
-######    line4=lines[3]
-######    line5=lines[4]
-######    line6=lines[5]
-####def subject():
-####    subject=lines[0].split()
-####    subject=random.choice(subject)
-####    return subject
-####subj=subject()
-####def noun_phrase(subj):
-####    sg_adj=lines[4].split()
-####    pl_adj=lines[5].split()
-####    if subj=='народ' or subj=='человек' or subj=='вирус':
-####        n_ph= 'Это '  + random.choice(sg_adj) + ' ' + subj + '!'
-####    else:
-####        n_ph= 'Это '  + random.choice(pl_adj) + ' ' + subj + '!'
-####    return n_ph
-####def noun_phrase(subj):
-####    sg_adj=line5.split()
-####    pl_adj=line6.split()
-####    if subj=='человек' or subj=='народ' or subj=='он':
-####        n_ph=subj + ' ' + random.choice(sg_adj)
-####    else:
-####        n_ph=subj + ' ' + random.choice(pl_adj)
-####    return n_ph
-####def plural_subject():
-####    pl_subj=line5.split()
-####    return random.choice(pl_subj)
-####def intransitive_predicate():
-####    intrans_pred=line2.split()
-####    return random.choice(intrans_pred)
-####
-####def transitive_predicate():
-####    trans_pred=line3.split()
-####    return random.choice(trans_pred)
-####def proverb():
-####    proverbs=line4.split(', ')
-####    return random.choice(proverbs)
-####def sent1():
-####    return subject() + ' ' + intransitive_predicate() + ' и не ' + transitive_predicate() + ', что...' + plural_subject() + ' ' + proverb + 
-####def sent2():
-####    sent2 = subject() + ' ' + proverb() + ' ' + intransitive_predicate() + ' ' + ', пока ' + subject() + ' ' + intransitive_predicate() + '.'
-####    return sent2.capitalize()
-
-
 
 
 ## тут финальная моя функция будет:
-
 
 def sequence_of_sentences():
     print('1. ', sent1())
@@ -304,4 +198,4 @@ def sequence_of_sentences():
     print('3. ', sent3())
     print('4. ', sent4())
     print('5. ', sent5())
-    return 'Внимание! разделение на грамматические категории сделано в соответствии со "школьной" грамматикой и не будет работать с такими исключениями. как "путь", несклоняемыми существительными и т.д. Прошу прощения...'
+    return 'Внимание! разделение на грамматические категории сделано в соответствии со "школьной" грамматикой и не будет работать с такими исключениями, как "путь", несклоняемыми существительными и т.д. Прошу прощения...'
