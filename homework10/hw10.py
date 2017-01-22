@@ -19,17 +19,14 @@ def bigram_hints():
     word=str()
     for i in range(len(bigram[task_noun])):
         hint=bigram[task_noun][i]
+        if i==1:
+            print('Ты использовал одну попытку.')
+        elif i>1:
+            print('Ты использовал ' + str(i) + ' попытки.')
         print('Попытка №' +str(i+1) + '. Подсказка: ' + hint)
         word=input('Угадай существительное: ')
         if word==task_noun:
-            return 'правильно! ты угадал с попытки №' + str(i+1)
+            return 'Правильно! Ты угадал с попытки №' + str(i+1)
         else:
-            print('Неправильно. Попытка №' + str(i+1) + ' не удалась.')
+            print('Неправильно(')
     return 'Увы, ты не угадал и проиграл('
-##    while word!='война':
-##        for i in range(len(bigram['война'])):
-##            hint=bigram['война'][i]
-##            print('Подсказка: ' + hint)
-##            word=input('Угадай существительное: ')
-##        print('неправильно, го еще ')
-##    return 'правильно!'
