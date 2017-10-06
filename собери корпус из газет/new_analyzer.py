@@ -18,7 +18,7 @@ def dirmak():
                 mdir=ydir+'\\'+str(m)
                 os.mkdir(mdir)
 #                print(mdir)
-#dirmak()
+dirmak()
 
 def crwlr():
     base='http://old.gazetayakutia.ru/index.php/archive/item/'
