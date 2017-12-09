@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<h1>Here you can find (almost) everything you need</h1>
+<h3>With this page you can get statistics on one particular language about one particular gesture. You need to fill in the language and chose the gesture.</h3>
+<h2>Please, write the name of the language IN ENGLISH WITH THE FIRST CAPITAL LETTER!</h2>
+<form method="GET">
+<label>Language: <input type="text" name="searchlang"></label><br>
+<input type="radio" name="searchgest" value="gest38"><img src="{{url_for('static', filename='38.gif')}}" height="150" width="200" alt="Загибать пальцы (рукой)" /></label><br><br>
+	<input type="radio" name="searchgest" value="gest39"><img src="{{url_for('static', filename='39.gif')}}" height="150" width="200" alt="Сгибать пальцы" /></label><br><br>
+	<input type="radio" name="searchgest" value="gest67"><img src="{{url_for('static', filename='67.gif')}}" height="150" width="200" alt="Растопырить пальцы" /></label><br><br>
+	<input type="radio" name="searchgest" value="gest68"><img src="{{url_for('static', filename='68.gif')}}" height="150" width="200" alt="Оттопырить мизинец" /></label><br><br>
+	<input type="submit" value="Send">
+</form>
+</body>
+</html>

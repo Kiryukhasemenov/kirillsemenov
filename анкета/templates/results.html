@@ -1,0 +1,14 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Results</title>
+ </head>
+ <body>
+ <h1>Results for your request</h1>
+ <p>You chose the {{ searchlang }} language, and gesture number {{ searchgest }}.</p><br><br>
+ <h1>Results</h1>
+ {% for a in gests %}
+ <p>{{ a }}</p>
+ {% endfor %}
+  </body>
+</html>

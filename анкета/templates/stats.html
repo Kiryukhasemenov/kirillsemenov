@@ -1,0 +1,29 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Statistics</title>
+ </head>
+ <body>
+ <h1>Interesting (and very useful) statistics</h1>
+   <table border="1">
+   <caption>Number of answers</caption>
+   <tr>
+    <th>Language</th><th>Number of answers</th>
+   </tr>
+    {% for l in langvals %}
+    <tr><td>{{ l }}</td><td>{{ langvals[l] }}</th></tr>
+	{% endfor %}
+  </table>
+  <br><br>
+  <p>Average age of respondent: {{ avage }} .</p><br>
+    <table border="1">
+   <caption>Countries by language</caption>
+   <tr>
+    <th>Language</th><th>Countries</th>
+   </tr>
+    {% for c in countryvals %}
+    <tr><td>{{ c }}</td><td>{{ countryvals[c] }}</th></tr>
+	{% endfor %}
+  </table> 
+  </body>
+</html>

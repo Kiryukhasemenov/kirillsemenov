@@ -1,0 +1,34 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+</head>
+<body>
+<h1>Welcome!</h1></br>
+<h2>Please fill in this part <b>ONLY IN ENGLISH!!!</b></h2><br><br>
+<form>
+    <label>Name: <input type="text" name="pname"></label><br>
+	<label>Gender: <input type="radio" name="gender" value="male">Male</label><br>
+	<input type="radio" name="gender" value="female">Female</label><br>
+    <label>Age: <input type="text" name="age"></label><br>
+	<label>Country you live in: <input type="text" name="country"></label><br>
+	<label>Your first language:<input type="radio" name="language" value="Russian">Русский</label><br>
+	<input type="radio" name="language" value="English">English</label><br>
+	<input type="radio" name="language" value="German">Deutsch</label><br>
+	<input type="radio" name="language" value="Italian">Italiano</label><br>
+	<input type="radio" name="language" value="Spanish">Español</label><br>
+	<input type="radio" name="language" value="Chinese">汉语</label><br>
+	<h2>The next pages are to be filled <b>ONLY IN YOUR FIRST LANGUAGE!</b></h2><br><br>
+	<img src="{{url_for('static', filename='38.gif')}}" /><br>
+	<label>What does he do? <input type="text" name="gesture38"></label><br>
+	<img src="{{url_for('static', filename='39.gif')}}" /> <br>
+	<label>What does he do? <input type="text" name="gesture39"></label><br>
+	<img src="{{url_for('static', filename='67.gif')}}" /><br>
+	<label>What does she do? <input type="text" name="gesture67"></label><br>
+	<img src="{{url_for('static', filename='68.gif')}}" /><br>
+	<label>What does she do? <input type="text" name="gesture68"></label><br>
+    <input type="submit" value="Send">
+</form>
+
+</body>
+</html>
