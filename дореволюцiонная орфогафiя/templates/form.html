@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Стартовая</title>    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+<body>
+
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="/oldschool">lenta.ru в дореволюционной орфографии</a></li>
+  <li role="presentation"><a href="/test">А ты бы как написал?</a></li>
+</ul>
+
+
+
+<h1>Найти слово в дореволюционной орфографии:</h1>
+<div class="row">
+  
+  <div class="col-lg-6">
+    <div class="input-group">
+	<form>
+	<span class="input-group-btn">
+      <input type="text" name="word" class="form-control" placeholder="Введите слово..."> 
+        <button class="btn btn-default" type="Submit" value="Send">Go!</button>
+		</form>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+    <div class="output-group">
+      <span class="output-group-btn">
+        <b>Дореволюцiонно: {% if newword %} {{ newword }} {% else %} Введите и узнаете!{% endif %}</b>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+<br><br>
+    <div class="container" color="red">
+    
+    <div class="jumbotron" style="background-color:rgb(22, 137, 186);">
+    <br>
+  <h3>В Филадельфии всегда солнечно,</h3>
+  <h3>а в Скопье - {{ temperature }} °C</h3>
+  <p><a class="btn btn-primary btn-lg" href="https://yandex.ru/pogoda/skopje" role="button">Подробнее...</a></p>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	
+
+</body>
+</html>
