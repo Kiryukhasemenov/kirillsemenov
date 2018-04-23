@@ -1,0 +1,1 @@
+Файлы лежат как в репозитории, так и в удаленной папке по ссылке: https://drive.google.com/drive/folders/1MiVmgQRAtIyOIwe-3p2cf6VPiVCmPVeM?usp=sharing
