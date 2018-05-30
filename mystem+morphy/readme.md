@@ -1,1 +1,1 @@
-Адрес на пайтонэнивэр: 
+Адрес на пайтонэнивэр: http://Kiryukhasemenov.pythonanywhere.com
