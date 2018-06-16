@@ -3,6 +3,7 @@ from flask import render_template, request
 import re
 from random import uniform
 from collections import defaultdict
+import random
 
 r_alphabet = re.compile(u'[а-яА-Я0-9-]+|[.,:;?!]+')
 
@@ -14,7 +15,12 @@ def propers(corpus):
         proper=re.findall(r'[a-яА-Я] [А-Я][а-я]+', line, flags=re.DOTALL)
     #print()
         for p in proper:
-            proper_names.append(p[2:].lower())
+            p=p[2:]
+            if p != 'Он' and p != 'Его' and p != 'Ему' and p != 'Им' and p != 'Нем' and p != 'Ты' and p != 'Тебя' and p != 'Тебе' and p != 'Тобой':
+                p=p.lower()
+                if p not in proper_names:
+                #if p != 'Он' and p != 'Его' and p != 'Ему' and p != 'Им' and p != 'Нем':
+                    proper_names.append(p)
     return proper_names
 	
 def gen_lines(corpus):
@@ -72,6 +78,21 @@ def unirand(seq):
         if rnd < freq_:
             return token
 
+def pathfinder(word, src):
+    variants=[]
+    for s in src.keys():
+        print(s)
+        if s[1]==word:
+            variants.append(s)
+    print(variants)
+    if len(variants) > 1:
+        result=random.choice(variants)
+    elif len(variants) == 1:
+        result=variants[0]
+    else:
+        result= ('$', '$')
+    return result
+
 def not_rand(text):
     seq=input('Введите предложение ').split()
     sum_, freq_ = 0,0
@@ -98,26 +119,59 @@ def input_sentence(s):
     
     a=s.lower()
     a=a.split()
+    last=a[-1]
+    if last[-1] == '.' or last[-1] == '!' or last[-1] =='?':
+        a[-1]=a[-1][:-1]
+    #    a.append(a[-1])
     return a
+
+def neologisms(word1, word2, src):
+    punctuation=[';', ',', '-', '$']
+    conjs=['и', 'а', 'но', 'однако', 'хотя']
+    secwords=[]
+    for s in src.keys():
+        secwords.append(s[1])
+    if word2 not in secwords:
+        punct=random.choice(punctuation)
+        conj=random.choice(conjs)
+        bigram=[punct, conj]
+        return bigram
+    else:
+        return [word1, word2]
 
 model=train('lt1.txt')
 all_names=propers('lt1.txt')
+print(all_names)
 
 def gen_sent(inp, mod, n):
     phrase = ''
     
     if len(inp)==1:
-        t0, t1= '$', inp[0]
-        phrase='...'+t1+' '
+        res = pathfinder(inp[0], model)
+        print('one word detected')
+        t0, t1 = res[0], res[1]
+        phrase='...'+t1.capitalize() + ' '
     else:
-        t0, t1= inp[-2], inp[-1]
-        phrase='...'+t0+' '+t1
+        t0, t1 = inp[-2], inp[-1]
+        print('two or more words detected')
+        phrase='...' + t0.capitalize() + ' ' + t1 + ' '
+
     while t1 != '$':
         try:
             t0, t1=t1, unirand(model[t0, t1])
+
         except:
-            t0, t1 = '$', '$'
-            t0, t1=t1, unirand(model[t0, t1])
+            #t0, t1 = '$', '$'
+            neols=neologisms(t0, t1, model)
+            t0, t1 = neols[0], neols[1]
+            print(t0, t1)
+            try:
+                t0, t1=t1, unirand(model[t0, t1])
+            except:
+                res = pathfinder(t1, model)
+                #print('one word detected')
+                t0, t1 = res[0], res[1]
+                t0, t1 = t1, unirand(model[t0, t1])
         if t1 in ('.!?,;:') or t0 == '$':
             phrase += t1
         else:
@@ -130,7 +184,10 @@ def gen_sent(inp, mod, n):
                     t1_new=t1.capitalize()
                     print(t1_new)
                     phrase += ' ' + t1_new
-    phrase=phrase.capitalize()
+                    print('phrase in this iteration is: ')
+                    print(phrase)
+    print(phrase)
+    #phrase=phrase.capitalize()
     print(phrase)
     return phrase
 #model = train('tolstoy.txt')
